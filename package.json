@@ -1,15 +1,19 @@
 {
   "name": "mongostat-influxdb",
-  "description": "Get mongo stat and insert into influxdb",
+  "description": "Get mongo stat and insert to influxdb",
   "version": "1.0.0",
   "author": "Tree Xie <vicansocanbico@gmail.com>",
   "keywords": [
     "mongostat",
     "influxdb"
   ],
+  "main": "index.js",
+  "bin": {
+    "mongostat-influxdb": "./.bin/mongostat-influxdb"
+  },
   "scripts": {
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
-    "test": "node ./node_modules/.bin/eslint ./lib/*.js && node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/*.js --"
+    "test": "node ./node_modules/.bin/eslint ./lib/*.js ./index.js && node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/*.js --"
   },
   "license": "MIT",
   "repository": {
@@ -17,10 +21,22 @@
     "url": "https://github.com/vicanso/mongostat-influxdb.git"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
+    "commander": "^2.9.0",
+    "influxdb-nodejs": "^2.5.1",
+    "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
     "mongoose": "^4.8.6"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.0"
   }
 }

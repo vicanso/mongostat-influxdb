@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const path = require('path');
+
+const pkg = require('../package');
+const stat = require('..');
+
+program
+  .version(pkg.version)
+  .option('-c, --config <n>', 'The config file, eg: ~/config.yml')
+  .parse(process.argv);
+
+if (!program.config) {
+  throw new Error('the config option can not be null');
+}
+
+stat.start(path.join(process.cwd(), program.config))
+  .then(() => console.info('start running mongostat-influxdb'))
+  .catch(console.error);
